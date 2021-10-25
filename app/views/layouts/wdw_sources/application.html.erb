@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wdw sources</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    "wdw_sources/application", media: "all" %>
+</head>
+<body>
+<nav>
+<%= link_to 'Home Page', main_app.root_url %>
+<%= link_to 'Attractions', touringplans_park_attractions_path %>
+<%= link_to 'Dining Venues', touringplans_dining_venues_path %>
+<%= link_to 'Hotels', touringplans_hotels_path %>
+</nav>
+<h1>Welcome to WDW Sources</h1>
+<%= yield %>
+
+</body>
+</html>
