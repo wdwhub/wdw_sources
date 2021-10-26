@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wdw_sources (0.1.5)
+    wdw_sources (0.1.6)
       rails (~> 6.1.4, >= 6.1.4.1)
       touringplans (~> 0.3, >= 0.3.1)
 
