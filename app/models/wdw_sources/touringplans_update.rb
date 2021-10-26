@@ -9,7 +9,13 @@ module WdwSources
     def self.sync_all(interest)
       
       tp_list = Touringplans.list_all(interest)
-      tp_list.each do |tp_list_item|
+      tp_list.each_with_index do |tp_list_item, index|
+        numerator   = (index + 1).to_f
+        denominator   = tp_list.length.to_f
+        percentage    = (numerator / denominator * 100).round(2)
+
+        puts "#{tp_list_item.permalink}  -- #{percentage}% of #{interest.to_s} synced" 
+
         tp_list_item_venue_permalink = tp_list_item.venue_permalink
         tp_list_item_permalink = tp_list_item.permalink
 
