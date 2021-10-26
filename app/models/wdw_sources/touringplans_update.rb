@@ -10,23 +10,33 @@ module WdwSources
       
       tp_list = Touringplans.list_all(interest)
       tp_list.each do |tp_list_item|
-        _cache_tp_place(tp_list_item, interest)
+        tp_list_item_venue_permalink = tp_list_item.venue_permalink
+        tp_list_item_permalink = tp_list_item.permalink
+
+        _cache_tp_place(tp_list_item_venue_permalink, tp_list_item_permalink, interest)
       end
     end
 
-    def self._cache_tp_place(tp_list_item, interest)
-      interest              = interest.to_sym
+    def self._cache_tp_place(tp_list_item_venue_permalink, tp_list_item_permalink, interest)
+      return "Missing tp_list_item_venue_permalink" if tp_list_item_venue_permalink.to_s.length < 3
+      return "Missing tp_list_item_permalink" if tp_list_item_permalink.to_s.length < 3
+      return "Missing interest" if interest.to_s.length < 3
 
-      cache_resources       = {attractions: WdwSources::TouringplansAttraction, 
-                               dining:      WdwSources::TouringplansDiningVenue,
-                               hotels:      WdwSources::TouringplansHotel
+      cache_resources       = {"attractions" => WdwSources::TouringplansAttraction, 
+                               "dining"      => WdwSources::TouringplansDiningVenue,
+                               "hotels"      => WdwSources::TouringplansHotel
                               }
                               
       cache_resource        = cache_resources[interest]
-      cache_item            = cache_resource.find_or_create_by(permalink: tp_list_item.permalink)
+      cache_item            = cache_resource.find_or_create_by(permalink: tp_list_item_permalink)
 
-      tp_item_full_record  = Touringplans.show(tp_list_item.venue_permalink,interest, tp_list_item.permalink)
-      cache_item.update!(tp_item_full_record.to_h)
+      tp_item_full_record  = Touringplans.show(tp_list_item_venue_permalink,interest, tp_list_item_permalink)
+
+      vp = {venue_permalink: tp_list_item_venue_permalink}
+      full_record_hash = vp.merge(tp_item_full_record.to_h)
+      cache_item.update!(full_record_hash)
+      # tp_item_full_record.to_h
+      cache_item
     end    
 
     # def self.cache_all_hotels
