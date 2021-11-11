@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_225455) do
+ActiveRecord::Schema.define(version: 2021_11_11_214149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_225455) do
     t.boolean "open_emh_evening"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "themeparks_id"
   end
 
   create_table "wdw_sources_touringplans_dining_venues", force: :cascade do |t|
