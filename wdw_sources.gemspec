@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version     = WdwSources::VERSION
   spec.authors     = ["captproton"]
   spec.email       = ["carl@wdwhub.net"]
-  spec.homepage    = "https://github.com/wdwhub"
+  spec.homepage    = "https://github.com/wdwhub/wdw_sources"
   spec.summary     = "Tap into information sources about Walt Disney World"
   spec.description = "Connect your app with information sources like Touring Plans."
   spec.license     = "MIT"
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.1"
+  spec.add_dependency "rails", ">= 6.1.4"
   spec.add_dependency "touringplans", '~> 0.3', ">= 0.3.1"
   
   spec.add_development_dependency "rspec-rails"
